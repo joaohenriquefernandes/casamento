@@ -2,3 +2,7 @@ dist
 coverage
 node_modules
 package-lock.json
+
+# Skills vendorizadas (geradas a partir de skills-lock.json)
+.agents/skills
+.claude/skills
