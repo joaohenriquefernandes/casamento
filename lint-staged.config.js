@@ -1,12 +1,12 @@
 import path from 'node:path'
 
 /** Skills vendorizadas: código de terceiros, não passa por lint nem format. */
-const VENDORED = /^\.(agents|claude)[\/]skills[\/]/
+const VENDORED = ['.agents/skills/', '.claude/skills/']
 
 const own = (files) =>
   files
-    .map((file) => path.relative(process.cwd(), file))
-    .filter((file) => !VENDORED.test(file))
+    .map((file) => path.relative(process.cwd(), file).split(path.sep).join('/'))
+    .filter((file) => !VENDORED.some((dir) => file.startsWith(dir)))
     .map((file) => `"${file}"`)
 
 export default {
