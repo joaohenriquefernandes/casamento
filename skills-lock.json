@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "skills": {
+    "context7": {
+      "source": "pedronauck/skills",
+      "sourceType": "github",
+      "skillPath": "skills/curated/context7/SKILL.md",
+      "computedHash": "74462007e7013b4c4eea818b3a5bd50cfa8641f4c12135877fc9f082249d984d"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "106acf230014cbb43ca34e6410371321b56ca742f9ee0442e8ec05bf02eb0384"
+    },
+    "motion": {
+      "source": "pedronauck/skills",
+      "sourceType": "github",
+      "skillPath": "skills/community/motion/SKILL.md",
+      "computedHash": "0e58c4402e5836b5de724a27266c573d144ea9109671ad8563595c1ae0683b83"
+    },
+    "motion-react": {
+      "source": "pedronauck/skills",
+      "sourceType": "github",
+      "skillPath": "skills/community/motion-react/SKILL.md",
+      "computedHash": "def581a9f41a0b6235ed5403bbba79dd3feb676ce38dd16acf72d7d1637936c4"
+    },
+    "react": {
+      "source": "pedronauck/skills",
+      "sourceType": "github",
+      "skillPath": "skills/mine/react/SKILL.md",
+      "computedHash": "021aec339e0092d4ad5e06997b5587c542f87070ad254adf20bb04e4f5edb818"
+    },
+    "tailwindcss": {
+      "source": "pedronauck/skills",
+      "sourceType": "github",
+      "skillPath": "skills/mine/tailwindcss/SKILL.md",
+      "computedHash": "65652867e85fa6b15a04c792387ab46e87642b41dbd34dd31d2263d0ac392bee"
+    },
+    "typescript-advanced": {
+      "source": "pedronauck/skills",
+      "sourceType": "github",
+      "skillPath": "skills/mine/typescript-advanced/SKILL.md",
+      "computedHash": "f6bef2e8e64f3fd817303d80b0e7e3ba7addecc30bfeb26839e2b777e4a00f51"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "d8e7d3afe37dcc8a97b99ffb5afdb4d0919ae0092ea8b68f44eb201f035e33ac"
+    }
+  }
+}
