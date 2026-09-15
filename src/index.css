@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+/* O tema é forçado por classe na raiz (ver index.html), não por media query:
+   `dark:` precisa seguir a classe para casar com a escolha da pessoa. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-serif: 'Newsreader', ui-serif, Georgia, 'Times New Roman', serif;
 
@@ -47,12 +51,138 @@
       transform: translateY(0.375rem);
     }
   }
+
+  /* Abertura do diálogo do mapa: o véu aparece, o cartão sobe. */
+  --animate-aparece: aparece 0.24s ease-out both;
+  --animate-abre-dialogo: abre-dialogo 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes aparece {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes abre-dialogo {
+    from {
+      opacity: 0;
+      transform: translateY(1rem) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Tokens semânticos — é só isto que os componentes consomem.
+   `inline` faz a utility virar `var(--fundo)` em vez de `var(--color-fundo)`,
+   então trocar o valor em `.dark` troca o tema sem recompilar nada. */
+@theme inline {
+  --color-fundo: var(--fundo);
+  --color-fundo-suave: var(--fundo-suave);
+  --color-cartao: var(--cartao);
+  --color-borda: var(--borda);
+  --color-texto: var(--texto);
+  --color-texto-suave: var(--texto-suave);
+  --color-destaque: var(--destaque);
+  --color-destaque-forte: var(--destaque-forte);
+  --color-sobre-destaque: var(--sobre-destaque);
+  --color-ornamento: var(--ornamento);
+  --color-sobreposicao: var(--sobreposicao);
+}
+
+/* --- Tema claro -----------------------------------------------------------
+   Convite de papel: off-white, grafite quente e fúcsia escurecido o bastante
+   para passar 4.5:1 sobre o fundo. */
+:root {
+  color-scheme: light;
+
+  --fundo: #faf7f2;
+  --fundo-suave: #f6e8ea;
+  --cartao: rgba(255, 253, 249, 0.78);
+  --borda: rgba(90, 24, 55, 0.14);
+  --texto: #332c30;
+  --texto-suave: #51484c;
+  --destaque: #c21878;
+  --destaque-forte: #a10f5f;
+  --sobre-destaque: #fff8e7;
+  --ornamento: rgba(90, 24, 55, 0.28);
+  /* Véu do diálogo: vinho translúcido, não cinza — o escurecimento
+     continua dentro da paleta do casamento. */
+  --sobreposicao: rgba(90, 24, 55, 0.32);
+
+  /* Foil com stops escuros: os claros do tema escuro sumiriam no off-white. */
+  --foil: linear-gradient(135deg, #8f1d5c, #b2125b, #d1007a, #a32970, #86194f);
+
+  /* Véus do banner: a foto lava para o fundo da página, como um scrim de papel. */
+  --veu-solido: #faf7f2;
+  --veu-medio: rgba(250, 247, 242, 0.78);
+  --veu-radial-denso: rgba(250, 247, 242, 0.95);
+  --veu-radial-leve: rgba(246, 232, 234, 0.62);
+  /* Sombra, não brilho: no claro o foil precisa de contorno contra o véu. */
+  --halo-monograma: rgba(90, 24, 55, 0.22);
+  --brilho-secao: rgba(209, 0, 122, 0.08);
+}
+
+/* --- Tema escuro ----------------------------------------------------------
+   É a identidade original do site: breu, marfim e o fúcsia vivo do monograma. */
+.dark {
+  color-scheme: dark;
+
+  --fundo: #0d0a09;
+  --fundo-suave: #14100e;
+  --cartao: rgba(246, 234, 224, 0.04);
+  --borda: rgba(246, 234, 224, 0.1);
+  --texto: #f6eae0;
+  --texto-suave: #b0a79f;
+  --destaque: #ff5aa0;
+  --destaque-forte: #ff7fb5;
+  --sobre-destaque: #0d0a09;
+  --ornamento: rgba(246, 234, 224, 0.3);
+  --sobreposicao: rgba(5, 3, 3, 0.72);
+
+  --foil: linear-gradient(135deg, #b72f78, #e87bb7, #f4b6d5, #d94aa8, #a94b7a);
+
+  --veu-solido: #0d0a09;
+  --veu-medio: rgba(20, 16, 14, 0.72);
+  --veu-radial-denso: rgba(13, 10, 9, 0.95);
+  --veu-radial-leve: rgba(20, 16, 14, 0.65);
+  --halo-monograma: rgba(13, 10, 9, 0.85);
+  --brilho-secao: rgba(209, 0, 122, 0.12);
 }
 
 /* Foil fúcsia metalizado do BRAND-GUIDELINES: gradiente em vez de cor chapada.
    Combine com `bg-clip-text text-transparent` para aplicar sobre texto. */
 @utility foil-fucsia {
-  background-image: linear-gradient(135deg, #b72f78, #e87bb7, #f4b6d5, #d94aa8, #a94b7a);
+  background-image: var(--foil);
+}
+
+/* Véu vertical do banner: some a foto no fundo da página, seja ele claro ou escuro. */
+@utility veu-inferior {
+  background-image: linear-gradient(
+    to top,
+    var(--veu-solido) 0%,
+    var(--veu-medio) 26%,
+    transparent 70%
+  );
+}
+
+/* Segundo véu, radial: concentra o escurecimento (ou o clareamento) atrás do monograma. */
+@utility veu-radial {
+  background-image: radial-gradient(
+    120% 66% at 50% 100%,
+    var(--veu-radial-denso) 0%,
+    var(--veu-radial-leve) 44%,
+    transparent 78%
+  );
+}
+
+/* Brilho fúcsia baixo no topo de uma seção, para ela não encostar seca no fundo. */
+@utility brilho-secao {
+  background-image: radial-gradient(58% 100% at 50% 0%, var(--brilho-secao) 0%, transparent 72%);
 }
 
 @layer base {
@@ -61,14 +191,14 @@
   }
 
   body {
-    background-color: var(--color-breu);
-    color: var(--color-marfim);
+    background-color: var(--color-fundo);
+    color: var(--color-texto);
     font-family: var(--font-serif);
     font-optical-sizing: auto;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-fucsia);
+    outline: 2px solid var(--color-destaque);
     outline-offset: 3px;
   }
 }
