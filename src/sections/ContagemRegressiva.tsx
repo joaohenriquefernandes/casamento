@@ -33,27 +33,27 @@ export function ContagemRegressiva() {
     <section
       id="contagem"
       aria-labelledby="rotulo-contagem titulo-contagem"
-      className="relative isolate overflow-hidden bg-breu px-6 py-20 sm:py-28"
+      className="relative isolate overflow-hidden bg-fundo px-6 py-20 sm:py-28"
     >
-      {/* Brilho fúcsia baixo, só para a seção não encostar seca no preto. */}
+      {/* Brilho fúcsia baixo, só para a seção não encostar seca no fundo. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-[radial-gradient(58%_100%_at_50%_0%,#d1007a1f_0%,transparent_72%)]"
+        className="brilho-secao pointer-events-none absolute inset-x-0 top-0 -z-10 h-72"
       />
 
       <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
         <p
           id="rotulo-contagem"
-          className="flex items-center gap-4 text-[0.68rem] font-light tracking-[0.3em] text-marfim/60 uppercase"
+          className="flex items-center gap-4 text-[0.68rem] font-light tracking-[0.3em] text-texto-suave uppercase"
         >
           <span
             aria-hidden="true"
-            className="h-px w-8 bg-linear-to-r from-transparent to-marfim/30 sm:w-14"
+            className="h-px w-8 bg-linear-to-r from-transparent to-ornamento sm:w-14"
           />
-          Nosso grande dia
+          Contagem regressiva
           <span
             aria-hidden="true"
-            className="h-px w-8 bg-linear-to-l from-transparent to-marfim/30 sm:w-14"
+            className="h-px w-8 bg-linear-to-l from-transparent to-ornamento sm:w-14"
           />
         </p>
 
@@ -63,7 +63,7 @@ export function ContagemRegressiva() {
           </time>
         </h2>
 
-        <p className="mt-2 text-sm font-light tracking-[0.08em] text-marfim/65">
+        <p className="mt-2 text-sm font-light tracking-[0.08em] text-texto-suave">
           {HORARIO_POR_EXTENSO}
         </p>
 
@@ -85,12 +85,12 @@ export function ContagemRegressiva() {
               {unidades.map(({ rotulo, valor }) => (
                 <li
                   key={rotulo}
-                  className="flex flex-col items-center gap-2 rounded-2xl border border-marfim/10 bg-marfim/4 px-2 py-6 sm:gap-3 sm:py-8"
+                  className="flex flex-col items-center gap-2 rounded-2xl border border-borda bg-cartao px-2 py-6 sm:gap-3 sm:py-8"
                 >
                   <span className="foil-fucsia bg-clip-text text-5xl font-light text-transparent tabular-nums sm:text-6xl">
                     {doisDigitos(valor)}
                   </span>
-                  <span className="text-[0.62rem] tracking-[0.28em] text-marfim/70 uppercase sm:text-[0.7rem]">
+                  <span className="text-[0.62rem] tracking-[0.28em] text-texto-suave uppercase sm:text-[0.7rem]">
                     {rotulo}
                   </span>
                 </li>

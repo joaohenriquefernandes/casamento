@@ -10,7 +10,7 @@ const FUSO_DO_CASAMENTO = 'America/Sao_Paulo'
  * mudar aqui. O offset torna o instante absoluto, o que mantém contagens e textos
  * corretos em qualquer fuso do dispositivo.
  */
-export const DATA_DO_CASAMENTO = '2026-11-28T16:00:00-03:00'
+export const DATA_DO_CASAMENTO = '2026-01-28T15:45:00-03:00'
 
 const instante = new Date(DATA_DO_CASAMENTO)
 
@@ -29,5 +29,8 @@ const [hora, minuto] = new Intl.DateTimeFormat('pt-BR', {
   .format(instante)
   .split(':')
 
-/** `às 16h` — ou `às 16h30`, se a cerimônia sair da hora cheia. */
+/** `15:45` — formato 24h, válido também como `datetime` de `<time>`. */
+export const HORARIO_24H = `${hora}:${minuto}`
+
+/** `às 16h` — ou `às 15h45`, se a cerimônia sair da hora cheia. */
 export const HORARIO_POR_EXTENSO = minuto === '00' ? `às ${hora}h` : `às ${hora}h${minuto}`

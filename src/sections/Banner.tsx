@@ -7,7 +7,7 @@ export function Banner() {
     <section
       id="inicio"
       aria-labelledby="titulo-banner"
-      className="relative isolate flex min-h-dvh flex-col justify-end overflow-hidden bg-noite"
+      className="relative isolate flex min-h-dvh flex-col justify-end overflow-hidden bg-fundo-suave"
     >
       <img
         src={fotoDoCasal}
@@ -17,26 +17,22 @@ export function Banner() {
         className="absolute inset-0 -z-20 size-full object-cover object-[57%_50%] motion-safe:animate-aproxima md:object-[50%_46%]"
       />
 
-      {/* Dois véus só na parte de baixo: levantam o monograma sem apagar a foto. */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-linear-to-t from-breu from-0% via-noite/72 via-26% to-transparent to-70%"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[radial-gradient(120%_66%_at_50%_100%,#0d0a09f2_0%,#14100ea6_44%,transparent_78%)]"
-      />
+      {/* Dois véus só na parte de baixo: levantam o monograma sem apagar a foto.
+          Ambos fundem no `--fundo` do tema, então a foto emenda na seção seguinte
+          tanto no escuro quanto no claro. */}
+      <div aria-hidden="true" className="veu-inferior absolute inset-0 -z-10" />
+      <div aria-hidden="true" className="veu-radial absolute inset-0 -z-10" />
 
       <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-6 pb-12 text-center sm:pb-16">
         <h1 id="titulo-banner" className="w-full motion-safe:animate-surge">
           <img
             src={monograma}
             alt="Luana e João Henrique"
-            className="mx-auto w-full max-w-[min(80vw,42rem)] drop-shadow-[0_2px_20px_rgba(13,10,9,0.85)]"
+            className="mx-auto w-full max-w-[min(80vw,42rem)] drop-shadow-[0_2px_20px_var(--halo-monograma)]"
           />
         </h1>
 
-        <p className="mt-6 text-sm font-light tracking-[0.08em] text-marfim/85 motion-safe:animate-surge motion-safe:[animation-delay:350ms] sm:text-base">
+        <p className="mt-6 text-sm font-light tracking-[0.08em] text-texto/85 motion-safe:animate-surge motion-safe:[animation-delay:350ms] sm:text-base">
           {DATA_POR_EXTENSO}
         </p>
 
@@ -48,7 +44,7 @@ export function Banner() {
           strokeWidth="1"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="mt-10 size-6 text-marfim/70 motion-safe:animate-respira sm:mt-12"
+          className="mt-10 size-6 text-texto/60 motion-safe:animate-respira sm:mt-12"
         >
           <path d="m5 9 7 7 7-7" />
         </svg>

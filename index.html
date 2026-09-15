@@ -9,6 +9,27 @@
       content="Luana e João Henrique vão casar. Todas as informações da festa em um só lugar."
     />
     <meta name="theme-color" content="#0d0a09" />
+    <script>
+      // Aplica o tema antes da primeira pintura, para a página nunca nascer com o
+      // tema errado. Chave e cores precisam bater com src/tema/tema.ts.
+      ;(function () {
+        try {
+          var salvo = localStorage.getItem('casamento:tema')
+          var escolhido = salvo === 'light' || salvo === 'dark' ? salvo : 'system'
+          var escuro =
+            escolhido === 'dark' ||
+            (escolhido === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+
+          document.documentElement.classList.toggle('dark', escuro)
+          document.documentElement.style.colorScheme = escuro ? 'dark' : 'light'
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute('content', escuro ? '#0d0a09' : '#faf7f2')
+        } catch {
+          // Sem localStorage ou matchMedia: fica o tema claro do :root.
+        }
+      })()
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
