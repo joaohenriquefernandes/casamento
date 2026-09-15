@@ -1,8 +1,6 @@
 import fotoDoCasal from '../assets/banner.png'
 import monograma from '../assets/logo-banner.svg'
-
-// TODO: confirmar data e cidade com os noivos antes de publicar.
-const DATA_DO_CASAMENTO = '28 de novembro de 2026'
+import { DATA_POR_EXTENSO } from '../dados/casamento'
 
 export function Banner() {
   return (
@@ -39,7 +37,7 @@ export function Banner() {
         </h1>
 
         <p className="mt-6 text-sm font-light tracking-[0.08em] text-marfim/85 motion-safe:animate-surge motion-safe:[animation-delay:350ms] sm:text-base">
-          {DATA_DO_CASAMENTO}
+          {DATA_POR_EXTENSO}
         </p>
 
         <svg

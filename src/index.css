@@ -49,6 +49,12 @@
   }
 }
 
+/* Foil fúcsia metalizado do BRAND-GUIDELINES: gradiente em vez de cor chapada.
+   Combine com `bg-clip-text text-transparent` para aplicar sobre texto. */
+@utility foil-fucsia {
+  background-image: linear-gradient(135deg, #b72f78, #e87bb7, #f4b6d5, #d94aa8, #a94b7a);
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
