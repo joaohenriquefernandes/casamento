@@ -1,5 +1,11 @@
+import { Banner } from './sections/Banner'
+
 function App() {
-  return <h1>casamento</h1>
+  return (
+    <main>
+      <Banner />
+    </main>
+  )
 }
 
 export default App
