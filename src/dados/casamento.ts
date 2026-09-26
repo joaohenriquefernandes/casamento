@@ -10,7 +10,7 @@ const FUSO_DO_CASAMENTO = 'America/Sao_Paulo'
  * mudar aqui. O offset torna o instante absoluto, o que mantém contagens e textos
  * corretos em qualquer fuso do dispositivo.
  */
-export const DATA_DO_CASAMENTO = '2026-01-28T15:45:00-03:00'
+export const DATA_DO_CASAMENTO = '2026-11-28T15:45:00-03:00'
 
 const instante = new Date(DATA_DO_CASAMENTO)
 
