@@ -1,6 +1,7 @@
 import { PlayerDeMusica } from './components/PlayerDeMusica/PlayerDeMusica'
 import { SeletorDeTema } from './components/SeletorDeTema/SeletorDeTema'
 import { Banner } from './sections/Banner'
+import { ConfirmacaoEPresentes } from './sections/ConfirmacaoEPresentes'
 import { ContagemRegressiva } from './sections/ContagemRegressiva'
 import { NossaHistoria } from './sections/NossaHistoria'
 import { OGrandeDia } from './sections/OGrandeDia'
@@ -18,6 +19,7 @@ function App() {
         <OGrandeDia />
         <Versiculo />
         <NossaHistoria />
+        <ConfirmacaoEPresentes />
       </main>
     </>
   )
