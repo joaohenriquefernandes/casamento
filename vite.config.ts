@@ -5,6 +5,6 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  // Repositório: joaohenriquefernandes/casamento → base é o nome do repo
-  base: '/casamento/',
+  // Domínio personalizado na raiz — sem subpath
+  base: '/',
 })
