@@ -1,3 +1,4 @@
+import { PlayerDeMusica } from './components/PlayerDeMusica/PlayerDeMusica'
 import { SeletorDeTema } from './components/SeletorDeTema/SeletorDeTema'
 import { Banner } from './sections/Banner'
 import { ContagemRegressiva } from './sections/ContagemRegressiva'
@@ -9,6 +10,7 @@ function App() {
   return (
     <>
       <SeletorDeTema />
+      <PlayerDeMusica />
 
       <main>
         <Banner />
