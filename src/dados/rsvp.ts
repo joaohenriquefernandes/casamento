@@ -6,7 +6,7 @@
  */
 export const WEDDING_CONFIG = {
   /** Data-limite para confirmação de presença — formato ISO `YYYY-MM-DD`. */
-  rsvpDeadline: '2026-10-15',
+  rsvpDeadline: '2026-11-05',
 
   /** Página dos noivos no Casar.com — concentra confirmação e lista de presentes. */
   casalUrl: 'https://noivos.casar.com/luana-joaohenrique',
@@ -14,7 +14,7 @@ export const WEDDING_CONFIG = {
 
 /**
  * Retorna a data-limite formatada em português.
- * Ex.: `15 de outubro de 2026`
+ * Ex.: `5 de novembro de 2026`
  */
 export function formatarDataLimite(dataIso: string): string {
   // Parseia como data local (sem fuso) para não sofrer conversão de UTC.
