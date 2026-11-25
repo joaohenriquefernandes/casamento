@@ -1,8 +1,11 @@
+import { useRef, useState } from 'react'
+import qrCodePix from '../assets/qr.png'
+import { Dialogo } from '../components/Dialogo/Dialogo'
 import { TituloDeSecao } from '../components/TituloDeSecao/TituloDeSecao'
 import { formatarDataLimite, prazoEncerrado, WEDDING_CONFIG } from '../dados/rsvp'
 import { useRevelaAoRolar } from '../hooks/useRevelaAoRolar'
 
-const { rsvpDeadline, casalUrl } = WEDDING_CONFIG
+const { rsvpDeadline, casalUrl, pix } = WEDDING_CONFIG
 const dataLimitePorExtenso = formatarDataLimite(rsvpDeadline)
 const prazoCerrado = prazoEncerrado(rsvpDeadline)
 
@@ -64,6 +67,62 @@ function IconePresente({ className }: { className?: string }) {
   )
 }
 
+type EstadoDaCopia = 'ocioso' | 'copiado' | 'falhou'
+
+/**
+ * Conteúdo do diálogo de Pix: QR Code e chave com botão de copiar.
+ */
+function ConteudoPix() {
+  const [estado, setEstado] = useState<EstadoDaCopia>('ocioso')
+  const temporizador = useRef<number | undefined>(undefined)
+
+  async function copiarChave() {
+    try {
+      await navigator.clipboard.writeText(pix.chave)
+      setEstado('copiado')
+    } catch {
+      setEstado('falhou')
+    }
+
+    window.clearTimeout(temporizador.current)
+    temporizador.current = window.setTimeout(() => setEstado('ocioso'), 3000)
+  }
+
+  return (
+    <div className="flex flex-col items-center gap-6 px-5 py-8 text-center sm:px-6">
+      <p className="max-w-sm text-sm font-light leading-relaxed text-texto-suave">
+        Aponte a câmera do app do seu banco para o QR Code ou copie a chave Pix abaixo.
+      </p>
+
+      <img
+        src={qrCodePix}
+        alt="QR Code para presentear os noivos via Pix"
+        width={518}
+        height={504}
+        className="w-full max-w-60 rounded-xl bg-white p-3"
+      />
+
+      <div className="flex w-full max-w-sm flex-col items-center gap-3">
+        <p className="text-sm font-light text-texto-suave">
+          Chave Pix (celular):{' '}
+          <span className="font-normal tracking-wide text-texto tabular-nums">
+            {pix.chaveFormatada}
+          </span>
+        </p>
+
+        <button type="button" onClick={copiarChave} className={CLASSES_BOTAO_PRINCIPAL}>
+          {estado === 'copiado' ? 'Chave copiada' : 'Copiar chave Pix'}
+        </button>
+
+        <p aria-live="polite" className="min-h-5 text-[0.72rem] font-light text-texto-suave/80">
+          {estado === 'copiado' && 'Agora é só colar no app do seu banco.'}
+          {estado === 'falhou' && `Não foi possível copiar. A chave é ${pix.chaveFormatada}.`}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 /**
  * Seção de confirmação de presença e lista de presentes.
  *
@@ -73,6 +132,7 @@ function IconePresente({ className }: { className?: string }) {
  */
 export function ConfirmacaoEPresentes() {
   const { referencia, classes } = useRevelaAoRolar<HTMLDivElement>()
+  const [pixAberto, setPixAberto] = useState(false)
 
   return (
     <section
@@ -171,10 +231,14 @@ export function ConfirmacaoEPresentes() {
                   Se você deseja nos presentear, preparamos nossa lista com muito carinho no
                   Casar.com. Sua lembrança fará parte desse momento tão especial para nós.
                 </p>
+
+                <p className="text-sm font-light leading-relaxed text-texto-suave">
+                  Se preferir, também é possível presentear diretamente via Pix.
+                </p>
               </div>
             </div>
 
-            <div className="mt-auto">
+            <div className="mt-auto flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href={casalUrl}
                 target="_blank"
@@ -183,10 +247,22 @@ export function ConfirmacaoEPresentes() {
               >
                 Acessar lista de presentes
               </a>
+
+              <button
+                type="button"
+                onClick={() => setPixAberto(true)}
+                className={CLASSES_BOTAO_SECUNDARIO}
+              >
+                Presentear via Pix
+              </button>
             </div>
           </article>
         </div>
       </div>
+
+      <Dialogo aberto={pixAberto} aoFechar={() => setPixAberto(false)} titulo="Presentear via Pix">
+        <ConteudoPix />
+      </Dialogo>
     </section>
   )
 }

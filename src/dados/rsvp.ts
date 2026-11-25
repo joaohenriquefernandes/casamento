@@ -10,6 +10,14 @@ export const WEDDING_CONFIG = {
 
   /** Página dos noivos no Casar.com — concentra confirmação e lista de presentes. */
   casalUrl: 'https://noivos.casar.com/luana-joaohenrique',
+
+  /** Chave Pix (celular) para quem prefere presentear direto. */
+  pix: {
+    /** Valor copiado — formato internacional aceito por todos os bancos. */
+    chave: '+5535997151223',
+    /** Como a chave aparece na tela. */
+    chaveFormatada: '(35) 99715-1223',
+  },
 } as const
 
 /**
